@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://bitbucket.org/atlassian-connect/all.js"></script>
+    <style>
+        span {
+            padding: 0 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <p></p>
+    <script>
+        var repoUuid = location.search.match(/[?&]repo_uuid=([^\&]*)/)[1]
+        repoUuid = decodeURIComponent(repoUuid);
+
+        var p = document.querySelector("p");
+
+        AP.require("request", function (request) {
+            request({
+                url: '/1.0/repositories/{}/' + repoUuid + '/src/HEAD/',
+                success: function (data) {
+                    data.files.forEach(function (file) {
+                        var filename = file.path.substring(file.path.lastIndexOf('/') + 1);
+
+                        var extension = filename.substring(filename.lastIndexOf('.') + 1);
+                        var span = document.createElement("span");
+                        span.textContent = extension;
+                        p.appendChild(span);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
