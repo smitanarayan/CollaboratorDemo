@@ -1,0 +1,26 @@
+{
+  "key": "add-on",
+  "name": "My Add-on",
+  "description": "Simple add-on",
+  "baseUrl": "https://df1b85b9.ngrok.io",
+  "modules": {
+    "oauthConsumer": {
+      "clientId": "QrS2heahDTLdAcDqbs"
+    },
+    "repoPages": [
+      {
+        "key": "cloud",
+        "name": {
+          "value": "File types"
+        },
+        "url": "/cloud.html?repo_uuid={repo_uuid}",
+        "location": "org.bitbucket.repository.navigation",
+        "params": {
+          "auiIcon": "aui-iconfont-pages"
+        }
+      }
+    ]
+  },
+  "scopes": ["repository"],
+  "contexts": ["personal"]
+}
